@@ -1,0 +1,48 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ratin <ratin@student.42.fr>                +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2018/11/06 18:46:26 by ratin             #+#    #+#              #
+#    Updated: 2018/11/26 01:11:32 by saouas           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC_PATH = src
+SRC_NAME = check_input_file1.c main.c
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+CPPFLAGS = -Iincludes
+
+LDFLAGS = -Llibft
+
+LDLIBS = -lft
+
+NAME = fillit
+
+CC = gcc
+
+CFLAGS = -Werror -Wall -Wextra
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+$(NAME): 
+	$(CC) -c $(CPPFLAGS)  $(SRC)
+	$(CC) -o $(NAME) libft/libft.a $(OBJ_NAME)
+
+all: $(NAME)
+
+norme:
+	norminette $(SRC)
+	norminette $(INC_PATH)*.h
+
+clean:
+	rm -rf $(OBJ_NAME)
+
+fclean: clean
+	rm -rf $(NAME)
+
+re: fclean all
+
+.PHONY: all, clean, fclean, re
